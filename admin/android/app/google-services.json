@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "164382157909",
+    "project_id": "cufest-test",
+    "storage_bucket": "cufest-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164382157909:android:72bec74f45fd15af7cf8dc",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBvRLnXS5af2CtqOgeZJf4Z0c8R1HmK8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
