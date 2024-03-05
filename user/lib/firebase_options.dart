@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB83Rf7iPGYxq9lf0G5J-l0ZPv1dfFyWAk',
-    appId: '1:164382157909:web:42fcb62e04b22e667cf8dc',
-    messagingSenderId: '164382157909',
-    projectId: 'cufest-test',
-    authDomain: 'cufest-test.firebaseapp.com',
-    storageBucket: 'cufest-test.appspot.com',
-    measurementId: 'G-6D4KGW842X',
+    apiKey: 'AIzaSyD3cWE4_1pD9zY3Lowy4GtjZiqHNeHhjFk',
+    appId: '1:961313199501:web:c6ec86887df713d46059c4',
+    messagingSenderId: '961313199501',
+    projectId: 'cu-fest-test',
+    authDomain: 'cu-fest-test.firebaseapp.com',
+    storageBucket: 'cu-fest-test.appspot.com',
+    measurementId: 'G-TDCSEP5CHB',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBBvRLnXS5af2CtqOgeZJf4Z0c8R1HmK8A',
-    appId: '1:164382157909:android:f7a3c732cdc178a97cf8dc',
-    messagingSenderId: '164382157909',
-    projectId: 'cufest-test',
-    storageBucket: 'cufest-test.appspot.com',
+    apiKey: 'AIzaSyDRVQmUo6lo3RrUICbwlxGkAMNUSgaUZvg',
+    appId: '1:961313199501:android:0704e17acf906b446059c4',
+    messagingSenderId: '961313199501',
+    projectId: 'cu-fest-test',
+    storageBucket: 'cu-fest-test.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA_bMzUyQrkhW4yZ72ZbWJLkMIEeQTudyY',
-    appId: '1:164382157909:ios:8a7d4d945658eb857cf8dc',
-    messagingSenderId: '164382157909',
-    projectId: 'cufest-test',
-    storageBucket: 'cufest-test.appspot.com',
+    apiKey: 'AIzaSyAPM-uM5OGRQsYUi-pCHJ-xScnu9oWA-Tg',
+    appId: '1:961313199501:ios:d7d0f853862b898c6059c4',
+    messagingSenderId: '961313199501',
+    projectId: 'cu-fest-test',
+    storageBucket: 'cu-fest-test.appspot.com',
     iosBundleId: 'com.example.user',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA_bMzUyQrkhW4yZ72ZbWJLkMIEeQTudyY',
-    appId: '1:164382157909:ios:e29c4392f281366c7cf8dc',
-    messagingSenderId: '164382157909',
-    projectId: 'cufest-test',
-    storageBucket: 'cufest-test.appspot.com',
+    apiKey: 'AIzaSyAPM-uM5OGRQsYUi-pCHJ-xScnu9oWA-Tg',
+    appId: '1:961313199501:ios:cc409fb03e06e0b26059c4',
+    messagingSenderId: '961313199501',
+    projectId: 'cu-fest-test',
+    storageBucket: 'cu-fest-test.appspot.com',
     iosBundleId: 'com.example.user.RunnerTests',
   );
 }

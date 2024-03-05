@@ -1,32 +1,13 @@
 {
   "project_info": {
-    "project_number": "164382157909",
-    "project_id": "cufest-test",
-    "storage_bucket": "cufest-test.appspot.com"
+    "project_number": "961313199501",
+    "project_id": "cu-fest-test",
+    "storage_bucket": "cu-fest-test.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:164382157909:android:72bec74f45fd15af7cf8dc",
-        "android_client_info": {
-          "package_name": "com.example.admin"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBBvRLnXS5af2CtqOgeZJf4Z0c8R1HmK8A"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:164382157909:android:f7a3c732cdc178a97cf8dc",
+        "mobilesdk_app_id": "1:961313199501:android:0704e17acf906b446059c4",
         "android_client_info": {
           "package_name": "com.example.user"
         }
@@ -34,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBBvRLnXS5af2CtqOgeZJf4Z0c8R1HmK8A"
+          "current_key": "AIzaSyDRVQmUo6lo3RrUICbwlxGkAMNUSgaUZvg"
         }
       ],
       "services": {
