@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user/data_provider.dart';
 import 'package:user/widgets/bar_graph.dart';
+import 'package:user/widgets/department_card_list.dart';
 
-class ScorePage extends StatefulWidget {
+class ScorePage extends StatelessWidget {
   const ScorePage({super.key});
 
-  @override
-  State<ScorePage> createState() => _ScorePageState();
-}
-
-class _ScorePageState extends State<ScorePage> {
   List<String> getDepNamesForGraph(DepartmentRepository depData) {
-    return depData.graphData.keys.toList();
+    return depData.graphData.keys.toList().isEmpty
+        ? []
+        : depData.graphData.keys.toList();
   }
 
   List<int> getDepPointsForGraph(DepartmentRepository depData) {
@@ -21,11 +19,37 @@ class _ScorePageState extends State<ScorePage> {
     for (String depName in data.keys) {
       points.add(data[depName]!['points']);
     }
-    return points;
+    return points.isEmpty ? [] : points;
+  }
+
+  List<List<dynamic>> getDepDataForCards(DepartmentRepository depData) {
+    List<List<dynamic>> simplifiedDepData = [];
+    Map<String, Map<String, dynamic>> data = depData.depData;
+
+    for (String depName in data.keys) {
+      simplifiedDepData
+          .add([depName, data[depName]!['pos'], data[depName]!['points']]);
+    }
+
+    for (int i = 0; i < simplifiedDepData.length; i++) {
+      int min = i;
+      List<dynamic> temp = [];
+      for (int j = i + 1; j < simplifiedDepData.length; j++) {
+        if (simplifiedDepData[min][1] > simplifiedDepData[j][1]) {
+          min = j;
+        }
+      }
+      temp = simplifiedDepData[i];
+      simplifiedDepData[i] = simplifiedDepData[min];
+      simplifiedDepData[min] = temp;
+    }
+
+    return simplifiedDepData;
   }
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     final depData = Provider.of<DepartmentRepository>(context);
     final screenStateProvider = Provider.of<ScreenStateProvider>(context);
 
@@ -119,12 +143,11 @@ class _ScorePageState extends State<ScorePage> {
             children: [
               Container(
                 width: double.maxFinite,
-                height: double.maxFinite,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Color.fromARGB(255, 255, 255, 255),
-                      Color.fromARGB(255, 200, 200, 200),
+                      Color.fromARGB(255, 221, 220, 220),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -161,8 +184,22 @@ class _ScorePageState extends State<ScorePage> {
                           ]),
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 35,
                     ),
+                    depData.getDepartmentData.isEmpty
+                        ? SizedBox(
+                            height: height - 400,
+                            child: const Center(
+                              child: Icon(
+                                Icons.coffee,
+                                size: 150,
+                                color: Colors.black12,
+                              ),
+                            ),
+                          )
+                        : DepartmentCardList(
+                            departmentList: getDepDataForCards(depData),
+                          ),
                   ],
                 ),
               ),

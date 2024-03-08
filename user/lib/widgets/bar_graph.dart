@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:user/widgets/bar.dart';
+import 'package:user/widgets/labels.dart';
 
 class BarGraph extends StatelessWidget {
   const BarGraph({super.key, required this.depNames, required this.points});
 
   final List<String> depNames;
   final List<int> points;
-
-  int getMax(List<int> points) {
-    points.sort();
-    return points[-1];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +17,14 @@ class BarGraph extends StatelessWidget {
       const Color.fromARGB(255, 67, 215, 239),
       const Color.fromARGB(255, 162, 162, 204),
     ];
+    points.sort();
+    int maxPoints = 0;
+    if (points.isNotEmpty) {
+      maxPoints = points.last;
+    }
+    List<double> heights =
+        points.reversed.toList().map((value) => value / maxPoints).toList();
+
     return Container(
       height: 198,
       width: 337,
@@ -59,14 +63,22 @@ class BarGraph extends StatelessWidget {
                     const SizedBox(
                       width: 28,
                     ),
-                    Bar(
-                      heightRatio: 1,
-                      color: barColors[0],
+                    for (double height in heights)
+                      Bar(
+                        heightRatio: height,
+                        color: barColors[heights.indexOf(height)],
+                      ),
+                    const SizedBox(
+                      width: 20,
                     ),
                   ],
                 ),
                 const SizedBox(
-                  height: 29,
+                  height: 9,
+                ),
+                Label(depNames: depNames),
+                const SizedBox(
+                  height: 5,
                 ),
               ],
             ),

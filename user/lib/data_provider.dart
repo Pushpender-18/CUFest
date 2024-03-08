@@ -45,7 +45,7 @@ class DepartmentRepository extends ChangeNotifier {
         depData[standing.id] = data;
         if (data['pos'] < 6) {
           graphData[standing.id] = data;
-        }
+        } else {}
       }
     });
     notifyListeners();

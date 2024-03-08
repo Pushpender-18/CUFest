@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class DepartmentCard extends StatelessWidget {
   const DepartmentCard(
-      {super.key, required this.name, required this.points, required this.pos});
+      {super.key, required this.name, required this.pos, required this.points});
 
   final String name;
-  final double points;
+  final int points;
   final int pos;
 
   @override
