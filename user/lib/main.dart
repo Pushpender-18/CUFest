@@ -27,6 +27,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => ScreenStateProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => EventProvider(),
+        ),
       ],
       child: const MainPage(),
     ),

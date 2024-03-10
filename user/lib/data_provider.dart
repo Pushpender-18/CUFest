@@ -9,9 +9,9 @@ class EventRepository extends ChangeNotifier {
   final CollectionReference collection =
       FirebaseFirestore.instance.collection('events');
 
-  List<Map<String, Map<String, dynamic>>> eventData = [];
+  List<List<dynamic>> eventData = [];
 
-  List<Map<String, Map<String, dynamic>>> get getEventData => eventData;
+  List<List<dynamic>> get getEventData => eventData;
 
   void updateData() {
     //  Event Data Format
@@ -19,7 +19,7 @@ class EventRepository extends ChangeNotifier {
       final events = value.docs;
       for (QueryDocumentSnapshot event in events) {
         final data = event.data() as Map<String, dynamic>;
-        eventData.add({event.id: data});
+        eventData.add([event.id, data]);
       }
     });
     notifyListeners();
@@ -61,6 +61,19 @@ class ScreenStateProvider extends ChangeNotifier {
 
   void update(ScreenState newState) {
     _state = newState;
+    notifyListeners();
+  }
+}
+
+class EventProvider extends ChangeNotifier {
+  EventProvider();
+
+  String choosenEvent = "";
+
+  String get event => choosenEvent;
+
+  void update(String newEvent) {
+    choosenEvent = newEvent;
     notifyListeners();
   }
 }

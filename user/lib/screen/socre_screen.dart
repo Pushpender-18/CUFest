@@ -50,6 +50,7 @@ class ScorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final eventData = Provider.of<EventRepository>(context);
     final depData = Provider.of<DepartmentRepository>(context);
     final screenStateProvider = Provider.of<ScreenStateProvider>(context);
 
@@ -136,7 +137,7 @@ class ScorePage extends StatelessWidget {
         body: RefreshIndicator(
           onRefresh: () {
             depData.updateData();
-
+            eventData.updateData();
             return Future.delayed(Duration.zero);
           },
           child: ListView(
