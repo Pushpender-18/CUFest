@@ -77,3 +77,16 @@ class EventProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class DepartmentProvider extends ChangeNotifier {
+  DepartmentProvider();
+
+  String choosenDepartment = "";
+
+  String get event => choosenDepartment;
+
+  void update(String newDepartment) {
+    choosenDepartment = newDepartment;
+    notifyListeners();
+  }
+}

@@ -145,7 +145,7 @@ class _EventChooseScreenState extends State<EventChooseScreen> {
               ),
               Expanded(
                 child: GridView.count(
-                  crossAxisCount: 2,
+                  crossAxisCount: eventNames.length < 2 ? 1 : 2,
                   padding: const EdgeInsets.fromLTRB(12, 25, 12, 25),
                   mainAxisSpacing: 25,
                   crossAxisSpacing: 20,

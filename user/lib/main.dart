@@ -30,6 +30,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => EventProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => DepartmentProvider(),
+        ),
       ],
       child: const MainPage(),
     ),
