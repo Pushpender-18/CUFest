@@ -30,22 +30,18 @@ class DepartmentRepository extends ChangeNotifier {
   DepartmentRepository();
 
   final collection = FirebaseFirestore.instance.collection('departments');
-  Map<String, Map<String, dynamic>> graphData = {};
-  Map<String, Map<String, dynamic>> depData = {};
+  List<List<dynamic>> depData = [];
 
-  Map<String, Map<String, dynamic>> get getGraphData => graphData;
-  Map<String, Map<String, dynamic>> get getDepartmentData => depData;
+  List<List<dynamic>> get getDepartmentData => depData;
 
   void updateData() async {
     //  Department Data Format
     await collection.get().then((value) {
       final standings = value.docs;
       for (QueryDocumentSnapshot standing in standings) {
-        final data = standing.data() as Map<String, dynamic>;
-        depData[standing.id] = data;
-        if (data['pos'] < 6) {
-          graphData[standing.id] = data;
-        } else {}
+        Map<String, dynamic> d = standing.data() as Map<String, dynamic>;
+        List<dynamic> data = d.entries.map((e) => e.value).toList();
+        depData.add([standing.id, data]);
       }
     });
     notifyListeners();

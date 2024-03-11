@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user/data_provider.dart';
@@ -7,52 +8,52 @@ import 'package:user/widgets/department_card_list.dart';
 class ScorePage extends StatelessWidget {
   const ScorePage({super.key});
 
-  List<String> getDepNamesForGraph(DepartmentRepository depData) {
-    return depData.graphData.keys.toList().isEmpty
-        ? []
-        : depData.graphData.keys.toList();
+  List<String> getDepNamesForGraph(List<List<dynamic>> depData) {
+    List<String> departmentNames = [];
+
+    for (List<dynamic> department in depData) {
+      departmentNames.add(department[0]);
+    }
+
+    return departmentNames;
   }
 
-  List<int> getDepPointsForGraph(DepartmentRepository depData) {
+  List<int> getDepPointsForGraph(List<List<dynamic>> depData) {
     List<int> points = [];
-    Map<String, Map<String, dynamic>> data = depData.graphData;
-    for (String depName in data.keys) {
-      points.add(data[depName]!['points']);
+
+    for (List<dynamic> department in depData) {
+      points.add(department[1][1]);
     }
-    return points.isEmpty ? [] : points;
+
+    return points;
   }
 
   List<List<dynamic>> getDepDataForCards(DepartmentRepository depData) {
-    List<List<dynamic>> simplifiedDepData = [];
-    Map<String, Map<String, dynamic>> data = depData.depData;
+    List<List<dynamic>> data = depData.depData;
 
-    for (String depName in data.keys) {
-      simplifiedDepData
-          .add([depName, data[depName]!['pos'], data[depName]!['points']]);
-    }
-
-    for (int i = 0; i < simplifiedDepData.length; i++) {
+    for (int i = 0; i < data.length; i++) {
       int min = i;
       List<dynamic> temp = [];
-      for (int j = i + 1; j < simplifiedDepData.length; j++) {
-        if (simplifiedDepData[min][1] > simplifiedDepData[j][1]) {
+      for (int j = i + 1; j < data.length; j++) {
+        if (data[min][1][0] > data[j][1][0]) {
           min = j;
         }
       }
-      temp = simplifiedDepData[i];
-      simplifiedDepData[i] = simplifiedDepData[min];
-      simplifiedDepData[min] = temp;
+      temp = data[i];
+      data[i] = data[min];
+      data[min] = temp;
     }
 
-    return simplifiedDepData;
+    return data;
   }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final eventData = Provider.of<EventRepository>(context);
-    final depData = Provider.of<DepartmentRepository>(context);
+    final departmentRepository = Provider.of<DepartmentRepository>(context);
     final screenStateProvider = Provider.of<ScreenStateProvider>(context);
+    final departmentData = getDepDataForCards(departmentRepository);
 
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
@@ -136,7 +137,7 @@ class ScorePage extends StatelessWidget {
         ),
         body: RefreshIndicator(
           onRefresh: () {
-            depData.updateData();
+            departmentRepository.updateData();
             eventData.updateData();
             return Future.delayed(Duration.zero);
           },
@@ -162,8 +163,14 @@ class ScorePage extends StatelessWidget {
                       height: 43,
                     ),
                     BarGraph(
-                      depNames: getDepNamesForGraph(depData),
-                      points: getDepPointsForGraph(depData),
+                      depNames: getDepNamesForGraph(
+                        departmentData.sublist(
+                            0, min(departmentData.length, 5)),
+                      ),
+                      points: getDepPointsForGraph(
+                        departmentData.sublist(
+                            0, min(departmentData.length, 5)),
+                      ),
                     ),
                     const SizedBox(
                       height: 35,
@@ -187,7 +194,7 @@ class ScorePage extends StatelessWidget {
                     const SizedBox(
                       height: 35,
                     ),
-                    depData.getDepartmentData.isEmpty
+                    departmentData.isEmpty
                         ? SizedBox(
                             height: height - 400,
                             child: const Center(
@@ -199,7 +206,7 @@ class ScorePage extends StatelessWidget {
                             ),
                           )
                         : DepartmentCardList(
-                            departmentList: getDepDataForCards(depData),
+                            departmentList: departmentData,
                           ),
                   ],
                 ),

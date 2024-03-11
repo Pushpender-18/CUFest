@@ -15,8 +15,8 @@ class DepartmentCardList extends StatelessWidget {
             children: [
               DepartmentCard(
                 name: department[0],
-                pos: department[1],
-                points: department[2],
+                pos: department[1][0],
+                points: department[1][1],
               ),
               const SizedBox(
                 height: 20,

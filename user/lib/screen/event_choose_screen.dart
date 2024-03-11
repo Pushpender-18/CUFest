@@ -26,7 +26,7 @@ class _EventChooseScreenState extends State<EventChooseScreen> {
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
         title: const Text("Choose an Event"),
-        content: const Text("Please choose and event to show its details."),
+        content: const Text("Please choose an event to show its details."),
         actions: [
           TextButton(
             onPressed: () {

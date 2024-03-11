@@ -17,13 +17,9 @@ class BarGraph extends StatelessWidget {
       const Color.fromARGB(255, 67, 215, 239),
       const Color.fromARGB(255, 162, 162, 204),
     ];
-    points.sort();
-    int maxPoints = 0;
-    if (points.isNotEmpty) {
-      maxPoints = points.last;
-    }
-    List<double> heights =
-        points.reversed.toList().map((value) => value / maxPoints).toList();
+
+    int maxPoints = points.isEmpty ? 0 : points.first;
+    List<double> heights = points.map((value) => value / maxPoints).toList();
 
     return Container(
       height: 198,
