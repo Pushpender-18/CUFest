@@ -60,29 +60,3 @@ class ScreenStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-class EventProvider extends ChangeNotifier {
-  EventProvider();
-
-  String choosenEvent = "";
-
-  String get event => choosenEvent;
-
-  void update(String newEvent) {
-    choosenEvent = newEvent;
-    notifyListeners();
-  }
-}
-
-class DepartmentProvider extends ChangeNotifier {
-  DepartmentProvider();
-
-  String choosenDepartment = "";
-
-  String get event => choosenDepartment;
-
-  void update(String newDepartment) {
-    choosenDepartment = newDepartment;
-    notifyListeners();
-  }
-}

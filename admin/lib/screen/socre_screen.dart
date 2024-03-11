@@ -85,7 +85,7 @@ class ScorePage extends StatelessWidget {
                     height: 64,
                   ),
                   const Text(
-                    "List",
+                    "Add",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontFamily: 'Roboto',
@@ -102,25 +102,7 @@ class ScorePage extends StatelessWidget {
                       screenStateProvider.update(ScreenState.eventChoose);
                     },
                     child: const Text(
-                      "Events",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,
-                        color: Color(0xff121213),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 21,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      screenStateProvider.update(ScreenState.departmentChoose);
-                    },
-                    child: const Text(
-                      "Departments",
+                      "Event Data",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Roboto',
