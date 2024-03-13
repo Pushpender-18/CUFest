@@ -36,6 +36,7 @@ class DepartmentRepository extends ChangeNotifier {
 
   void updateData() async {
     //  Department Data Format
+    depData = [];
     await collection.get().then((value) {
       final standings = value.docs;
       for (QueryDocumentSnapshot standing in standings) {
