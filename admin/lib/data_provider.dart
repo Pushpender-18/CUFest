@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-enum ScreenState { score, departmentChoose, eventChoose, department, event }
+enum ScreenState { score, add }
 
 class EventRepository extends ChangeNotifier {
   EventRepository();
@@ -21,8 +21,15 @@ class EventRepository extends ChangeNotifier {
         final data = event.data() as Map<String, dynamic>;
         eventData.add([event.id, data]);
       }
+      print(eventData.length);
     });
     notifyListeners();
+  }
+
+  void setData(String name) {
+    collection.doc(name).set({
+      'NaN': 0,
+    });
   }
 }
 
@@ -44,8 +51,15 @@ class DepartmentRepository extends ChangeNotifier {
         List<dynamic> data = d.entries.map((e) => e.value).toList();
         depData.add([standing.id, data]);
       }
+      print(depData.length);
     });
     notifyListeners();
+  }
+
+  void setData(String name, int points) async {
+    await collection.doc(name).set(
+      {"points": points},
+    );
   }
 }
 

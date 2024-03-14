@@ -22,7 +22,7 @@ class ScorePage extends StatelessWidget {
     List<int> points = [];
 
     for (List<dynamic> department in depData) {
-      points.add(department[1][1]);
+      points.add(department[1][0]);
     }
 
     return points;

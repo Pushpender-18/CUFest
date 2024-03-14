@@ -26,16 +26,16 @@ class DepartmentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            name,
-            style: const TextStyle(
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w500,
-              fontSize: 20,
+          SizedBox(
+            width: 180,
+            child: Text(
+              name,
+              style: const TextStyle(
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+              ),
             ),
-          ),
-          const SizedBox(
-            width: 0,
           ),
           Text(
             pos.toString(),

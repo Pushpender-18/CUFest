@@ -58,14 +58,19 @@ class _EventRadioCardState extends State<EventRadioCard> {
               color: const Color(0xff121213),
             ),
             label: Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                widget.eventName,
-                style: const TextStyle(
-                  fontFamily: 'Robot',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xff121213),
+              padding: const EdgeInsets.only(left: 2),
+              child: SizedBox(
+                width: 80,
+                child: Text(
+                  widget.eventName,
+                  style: TextStyle(
+                    fontFamily: 'Robot',
+                    fontSize: widget.eventName.length > 20 ? 9 : 12,
+                    overflow: TextOverflow.fade,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xff121213),
+                  ),
+                  softWrap: true,
                 ),
               ),
             ),

@@ -10,13 +10,13 @@ class DepartmentCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (List<dynamic> department in departmentList)
+        for (int i = 0; i < departmentList.length; i++)
           Column(
             children: [
               DepartmentCard(
-                name: department[0],
-                pos: department[1][0],
-                points: department[1][1],
+                name: departmentList[i][0],
+                pos: i + 1,
+                points: departmentList[i][1][0],
               ),
               const SizedBox(
                 height: 20,

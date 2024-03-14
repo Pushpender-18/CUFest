@@ -99,7 +99,7 @@ class ScorePage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      screenStateProvider.update(ScreenState.eventChoose);
+                      screenStateProvider.update(ScreenState.add);
                     },
                     child: const Text(
                       "Event Data",

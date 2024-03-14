@@ -14,11 +14,13 @@ class EventRepository extends ChangeNotifier {
   List<List<dynamic>> get getEventData => eventData;
 
   void updateData() {
+    eventData = [];
     //  Event Data Format
     collection.get().then((value) {
       final events = value.docs;
       for (QueryDocumentSnapshot event in events) {
-        final data = event.data() as Map<String, dynamic>;
+        final d = event.data() as Map<String, dynamic>;
+        List<dynamic> data = d.entries.map((e) => [e.key, e.value]).toList();
         eventData.add([event.id, data]);
       }
     });

@@ -12,7 +12,7 @@ class EventScreen extends StatelessWidget {
     for (int i = 0; i < sortedEventData.length; i++) {
       int min = i;
       for (int j = i + 1; j < sortedEventData.length; j++) {
-        if (sortedEventData[min][1]['pos'] > sortedEventData[j][1]['pos']) {
+        if (sortedEventData[min][1][1] > sortedEventData[j][1][1]) {
           min = j;
         }
       }
@@ -29,8 +29,18 @@ class EventScreen extends StatelessWidget {
     final eventProvider = Provider.of<EventProvider>(context);
     final screenStateProvider = Provider.of<ScreenStateProvider>(context);
     final eventRepository = Provider.of<EventRepository>(context);
-    List<List<dynamic>> eventData = eventRepository.eventData;
-    eventData = eventDataSort(eventData);
+    List<List<dynamic>> d = eventRepository.eventData;
+    List<dynamic> eventData = [];
+    for (List<dynamic> data in d) {
+      if (data[0] == eventProvider.choosenEvent) {
+        eventData = data[1];
+        break;
+      }
+    }
+
+    if (eventData[0][0] == 'NaN') {
+      eventData = [];
+    }
 
     return MaterialApp(
       home: Scaffold(
@@ -50,12 +60,16 @@ class EventScreen extends StatelessWidget {
                   size: 26,
                 ),
               ),
-              Text(
-                eventProvider.choosenEvent,
-                style: const TextStyle(
-                  color: Color(0xff121213),
-                  fontFamily: 'Roboto',
-                  fontSize: 24,
+              SizedBox(
+                width: 250,
+                child: Text(
+                  eventProvider.choosenEvent,
+                  style: TextStyle(
+                    color: const Color(0xff121213),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                    fontSize: eventProvider.choosenEvent.length > 30 ? 15 : 18,
+                  ),
                 ),
               ),
             ],
@@ -81,11 +95,25 @@ class EventScreen extends StatelessWidget {
               ),
               const DepartmentHeading(),
               const SizedBox(height: 12),
+              eventData.isEmpty
+                  ? const SizedBox(
+                      height: 400,
+                      child: Center(
+                        child: Icon(
+                          Icons.coffee,
+                          size: 150,
+                          color: Colors.black12,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
               for (int i = 0; i < eventData.length; i++)
-                DepartmentMiniCard(sNo: i + 1, depName: eventData[i][0]),
-              const SizedBox(
-                height: 9,
-              )
+                Column(children: [
+                  DepartmentMiniCard(sNo: i + 1, depName: eventData[i][0]),
+                  const SizedBox(
+                    height: 9,
+                  ),
+                ]),
             ],
           ),
         ),

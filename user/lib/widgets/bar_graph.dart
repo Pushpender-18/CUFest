@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:user/widgets/bar.dart';
-import 'package:user/widgets/labels.dart';
 
 class BarGraph extends StatelessWidget {
-  const BarGraph({super.key, required this.depNames, required this.points});
+  BarGraph({super.key, required this.depNames, required this.points});
 
-  final List<String> depNames;
-  final List<int> points;
+  List<String> depNames;
+  List<int> points;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,13 @@ class BarGraph extends StatelessWidget {
     ];
 
     int maxPoints = points.isEmpty ? 0 : points.first;
-    List<double> heights = points.map((value) => value / maxPoints).toList();
+    List<double> heights = [0];
+    if (maxPoints == 0) {
+      points = [];
+      depNames = [];
+    } else {
+      heights = points.map((value) => value / maxPoints).toList();
+    }
 
     return Container(
       height: 198,
@@ -70,11 +75,7 @@ class BarGraph extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 9,
-                ),
-                Label(depNames: depNames),
-                const SizedBox(
-                  height: 5,
+                  height: 29,
                 ),
               ],
             ),

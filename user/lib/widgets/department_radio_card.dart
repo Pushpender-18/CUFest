@@ -57,15 +57,15 @@ class _DepartmentRadioCardState extends State<DepartmentRadioCard> {
                   : Icons.check_box_outline_blank_rounded,
               color: const Color(0xff121213),
             ),
-            label: Padding(
-              padding: const EdgeInsets.only(left: 16),
+            label: SizedBox(
+              width: 80,
               child: Text(
                 widget.departmentName,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Robot',
-                  fontSize: 20,
+                  fontSize: widget.departmentName.length > 30 ? 6 : 9,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xff121213),
+                  color: const Color(0xff121213),
                 ),
               ),
             ),

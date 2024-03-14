@@ -48,6 +48,51 @@ class _EventChooseScreenState extends State<EventChooseScreen> {
 
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  screenStateProvider.update(ScreenState.score);
+                },
+                icon: const Icon(Icons.arrow_back),
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              const Text(
+                "Choose Event",
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 75,
+              ),
+              Builder(
+                builder: (context) {
+                  return IconButton(
+                    onPressed: () {
+                      setState(() {
+                        if (eventProvider.event.isEmpty) {
+                          emptyEventAlertBox(context);
+                        } else {
+                          screenStateProvider.update(ScreenState.event);
+                        }
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 28,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -61,69 +106,6 @@ class _EventChooseScreenState extends State<EventChooseScreen> {
           ),
           child: Column(
             children: [
-              const SizedBox(
-                height: 60,
-              ),
-              const SearchBar(
-                constraints: BoxConstraints(
-                  minWidth: 336,
-                  maxWidth: 336,
-                  minHeight: 50,
-                ),
-                textStyle: MaterialStatePropertyAll(
-                  TextStyle(
-                    fontFamily: 'Robot',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                backgroundColor: MaterialStatePropertyAll(
-                  Color(0xfffbfafa),
-                ),
-                hintText: "Event Name",
-                elevation: MaterialStatePropertyAll(8),
-                textCapitalization: TextCapitalization.characters,
-              ),
-              const SizedBox(
-                height: 29,
-              ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 26,
-                  ),
-                  const Text(
-                    "Choose Event",
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 120,
-                  ),
-                  Builder(
-                    builder: (context) {
-                      return IconButton(
-                        onPressed: () {
-                          setState(() {
-                            if (eventProvider.event.isEmpty) {
-                              emptyEventAlertBox(context);
-                            } else {
-                              screenStateProvider.update(ScreenState.event);
-                            }
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 28,
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 13,
               ),

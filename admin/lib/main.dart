@@ -1,3 +1,4 @@
+import 'package:admin/data_uploader.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -54,8 +55,10 @@ class _MainPageState extends State<MainPage> {
     final screenStateProvider = Provider.of<ScreenStateProvider>(context);
     ScreenState screenState = screenStateProvider.state;
     switch (screenState) {
-      case ScreenState.score:
+      case ScreenState.add:
         return const ScorePage();
+      case ScreenState.score:
+        return const DataUploader();
       default:
         print("Error");
         return const ScorePage();
