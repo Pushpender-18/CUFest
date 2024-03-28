@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "188825311164",
+    "project_id": "cu-fest",
+    "storage_bucket": "cu-fest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188825311164:android:5d04825619f799ec0dfdb9",
+        "android_client_info": {
+          "package_name": "com.example.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp8J6bRfNFfkhsGyPW_GJl25M_F3Hdug8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
